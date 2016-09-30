@@ -1,12 +1,14 @@
 ﻿<Window x:Class="TestChildVR.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:usercontrol="clr-namespace:TestChildVR.usercontrol"
         Title="映墨科技测试工具" 
         Background="Cornsilk"
         WindowStartupLocation="CenterScreen"
-        Height="350" Width="700">
+        
+        Height="768" Width="1440">
     <Grid>
-        <Grid x:Name="loginGrid" >
+        <Grid x:Name="loginGrid" Visibility="Hidden" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -32,17 +34,36 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="testGrid" Visibility="Hidden">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                    <Button Content="开始检测"  x:Name="StartCheck" Click="StartCheck_OnClick"></Button>
+        <Grid x:Name="testGrid" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Button Content="开始检测"  x:Name="StartCheck" ></Button>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <usercontrol:MusicCheck Margin="10"></usercontrol:MusicCheck>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <usercontrol:CoinsIn Margin="10"></usercontrol:CoinsIn>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <usercontrol:LineTest Margin="10"></usercontrol:LineTest>
+                </Grid>
             </Grid>
-            <Grid Grid.Column="1">
-                <RichTextBox x:Name="myRichTextBox" Background="Cornsilk"  FontSize="12"></RichTextBox>
+            <Grid Row="1">
+                <Grid>
+                    <RichTextBox x:Name="myRichTextBox" Background="Cornsilk"  FontSize="12"></RichTextBox>
+                </Grid>
             </Grid>
         </Grid>
 

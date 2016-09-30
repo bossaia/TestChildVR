@@ -1,14 +1,10 @@
-﻿<Window x:Class="TestChildVR.usercontrol.MusicCheck"
+﻿<UserControl x:Class="TestChildVR.usercontrol.MusicCheck"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-        WindowStyle="None"
         Background="Cornsilk"
-        WindowStartupLocation="CenterScreen"
         IsVisibleChanged="MusicCheck_OnIsVisibleChanged"
-        Title="MusicCheck" Height="400" Width="400">
-    <Window.Resources>
-    </Window.Resources>
+        >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -36,4 +32,4 @@
             <controls:ToggleSwitch  SwitchForeground="YellowGreen" OnLabel="通过"  OffLabel="不通过" x:Name="rightvoice" IsCheckedChanged="Rightvoice_OnIsCheckedChanged"></controls:ToggleSwitch>
         </Grid>
     </Grid>
-</Window>
+</UserControl>

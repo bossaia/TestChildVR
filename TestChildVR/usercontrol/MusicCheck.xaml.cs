@@ -17,7 +17,7 @@ namespace TestChildVR.usercontrol
     /// <summary>
     /// MusicCheck.xaml 的交互逻辑
     /// </summary>
-    public partial class MusicCheck : Window
+    public partial class MusicCheck : UserControl
     {
         private static bool _isfirstload = true;
         public  string leftVoiceCheck ="不合格";

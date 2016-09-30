@@ -17,7 +17,7 @@ namespace TestChildVR.usercontrol
     /// <summary>
     /// LineTest.xaml 的交互逻辑
     /// </summary>
-    public partial class LineTest : Window
+    public partial class LineTest : UserControl
     {
         public int lineTest = 0;
         public string result = "";

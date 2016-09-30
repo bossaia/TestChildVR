@@ -17,7 +17,7 @@ namespace TestChildVR.usercontrol
     /// <summary>
     /// CoinsIn.xaml 的交互逻辑
     /// </summary>
-    public partial class CoinsIn : Window
+    public partial class CoinsIn : UserControl
     {
         public int mycoins = 0;
         public string _passFlag ;
