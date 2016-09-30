@@ -1,0 +1,10 @@
+﻿<Window x:Class="TestChildVR.usercontrol.ColorCheck"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Title="ColorCheck" Height="768" Width="1366">
+    <Grid x:Name="mainGrid" Background="Silver">
+        <Button x:Name="checkPass" Content="点击按钮检测通过" FontSize="20" Width="200" Height="40" Click="CheckPass_OnClick"></Button>
+    </Grid>
+</Window>
