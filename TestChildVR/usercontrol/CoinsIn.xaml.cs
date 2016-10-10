@@ -17,10 +17,14 @@ namespace TestChildVR.usercontrol
     /// <summary>
     /// CoinsIn.xaml 的交互逻辑
     /// </summary>
+    /// 
     public partial class CoinsIn : UserControl
     {
         public int mycoins = 0;
-        public string _passFlag ;
+        public string _passFlag ="不合格";
+        public delegate void coinsInStatusChanged();
+
+        public event coinsInStatusChanged statusChanged;
         public CoinsIn()
         {
             InitializeComponent();
@@ -38,23 +42,25 @@ namespace TestChildVR.usercontrol
             {
                 this.Coins.Content = mycoins.ToString();
             }));
-        }
-        private void Pass_OnClick(object sender, RoutedEventArgs e)
-        {
-           // throw new NotImplementedException();
-            this.Dispatcher.BeginInvoke(new Action(() =>
+            if (mycoins >= 5)
             {
-                this.Visibility =Visibility.Hidden;
+                this.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.result.Content = "通过";
+                }));
                 _passFlag = "合格";
-            }));
+            }
+            statusChanged();
         }
-        private void NotPass_OnClick(object sender, RoutedEventArgs e)
+
+        public void clear()
         {
-            //throw new NotImplementedException();
+            mycoins = 0;
+            _passFlag = "不合格";
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
-                this.Visibility = Visibility.Hidden;
-                _passFlag = "不合格";
+                this.result.Content = "";
+                this.Coins.Content = "0";
             }));
         }
     }

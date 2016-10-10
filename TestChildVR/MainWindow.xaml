@@ -5,10 +5,9 @@
         Title="映墨科技测试工具" 
         Background="Cornsilk"
         WindowStartupLocation="CenterScreen"
-        
         Height="768" Width="1440">
     <Grid>
-        <Grid x:Name="loginGrid" Visibility="Hidden" >
+        <Grid x:Name="loginGrid" Visibility="Visible" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -34,7 +33,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="testGrid" Visibility="Visible">
+        <Grid x:Name="testGrid" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -46,18 +45,22 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <Button Content="开始检测"  x:Name="StartCheck" ></Button>
+                    <Button Content="屏幕检测"  x:Name="StartCheck" Click="StartCheck_OnClick"></Button>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <usercontrol:MusicCheck Margin="10"></usercontrol:MusicCheck>
+                    <usercontrol:MusicCheck Margin="10" x:Name="musicCheck"></usercontrol:MusicCheck>
                 </Grid>
                 <Grid Grid.Column="2">
-                    <usercontrol:CoinsIn Margin="10"></usercontrol:CoinsIn>
+                    <usercontrol:CoinsIn Margin="10" x:Name="coinsCheck"></usercontrol:CoinsIn>
                 </Grid>
                 <Grid Grid.Column="3">
-                    <usercontrol:LineTest Margin="10"></usercontrol:LineTest>
+                    <usercontrol:LineTest Margin="10" x:Name="lineCheck"></usercontrol:LineTest>
+                </Grid>
+                <Grid Grid.Column="4">
+                    <Button Content="打印结果" FontSize="30" x:Name="printResult" Click="PrintResult_OnClick" Visibility="Hidden"></Button>
                 </Grid>
             </Grid>
             <Grid Row="1">

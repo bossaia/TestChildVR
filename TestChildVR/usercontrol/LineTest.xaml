@@ -16,10 +16,13 @@
             <Label Height="100" Width="100" FontSize="80" x:Name="lines" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="0"/>
         </Grid>
         <Grid Grid.Row="2">
+            <Label x:Name="lineResult" Height="30" Width="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+        </Grid>
+        <!--<Grid Grid.Row="2">
             <DockPanel>
                 <Button Content="测试通过" Background="Cornsilk" x:Name="Pass" Width="150" Click="Pass_OnClick"/>
                 <Button Content="测试失败" Background="Cornsilk" x:Name="NotPass" Click="NotPass_OnClick" />
             </DockPanel>
-        </Grid>
+        </Grid>-->
     </Grid>
 </UserControl>

@@ -23,13 +23,13 @@
             <Button Content="右声道" FontSize="20" x:Name="right_button" Background="Cornsilk" Click="Right_button_OnClick"></Button>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="0">
-            <Button Content="完成喇叭测试" x:Name="done" Click="Done_OnClick" FontSize="15" Background="Cornsilk"></Button>
+            <Button Content="播放音乐" x:Name="done" Click="Done_OnClick" FontSize="15" Background="Cornsilk"></Button>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center">
-            <controls:ToggleSwitch  SwitchForeground="YellowGreen" OnLabel="通过"  OffLabel="不通过" x:Name="leftvoice" IsCheckedChanged="Leftvoice_OnIsCheckedChanged"></controls:ToggleSwitch>
+            <controls:ToggleSwitch  SwitchForeground="YellowGreen" OnLabel="通过"  OffLabel="不通过" x:Name="leftvoice" IsCheckedChanged="Leftvoice_OnIsCheckedChanged" Visibility="Hidden"></controls:ToggleSwitch>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <controls:ToggleSwitch  SwitchForeground="YellowGreen" OnLabel="通过"  OffLabel="不通过" x:Name="rightvoice" IsCheckedChanged="Rightvoice_OnIsCheckedChanged"></controls:ToggleSwitch>
+            <controls:ToggleSwitch  SwitchForeground="YellowGreen" OnLabel="通过"  OffLabel="不通过" x:Name="rightvoice" IsCheckedChanged="Rightvoice_OnIsCheckedChanged" Visibility="Hidden"></controls:ToggleSwitch>
         </Grid>
     </Grid>
 </UserControl>

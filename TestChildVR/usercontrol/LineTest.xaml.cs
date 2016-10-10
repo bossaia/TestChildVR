@@ -20,7 +20,11 @@ namespace TestChildVR.usercontrol
     public partial class LineTest : UserControl
     {
         public int lineTest = 0;
-        public string result = "";
+        public string result = "不合格";
+
+        public delegate void LineStatusChanged();
+
+        public LineStatusChanged StatusChanged;
         public LineTest()
         {
             InitializeComponent();
@@ -35,32 +39,30 @@ namespace TestChildVR.usercontrol
 
         void count_OnReturn()
         {
-            //throw new NotImplementedException();
-            //Console.WriteLine(@"aaaa");
             lineTest++;
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
                 this.lines.Content = lineTest;
             }));
-        }
-
-        private void Pass_OnClick(object sender, RoutedEventArgs e)
-        {
-           // throw new NotImplementedException();
-            result = "合格";
-            this.Dispatcher.BeginInvoke(new Action(() =>
+            if (lineTest >= 5)
             {
-                this.Visibility = Visibility.Hidden;
-            }));
+                this.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.lineResult.Content="通过";
+                }));
+                result = "合格";
+            }
+            StatusChanged();
         }
 
-        private void NotPass_OnClick(object sender, RoutedEventArgs e)
+        public void clear()
         {
-           // throw new NotImplementedException();
+            lineTest = 0;
             result = "不合格";
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
-                this.Visibility = Visibility.Hidden;
+                this.lineResult.Content = "";
+                this.lines.Content = "0";
             }));
         }
     }

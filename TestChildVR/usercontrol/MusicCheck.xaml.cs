@@ -20,9 +20,11 @@ namespace TestChildVR.usercontrol
     public partial class MusicCheck : UserControl
     {
         private static bool _isfirstload = true;
-        public  string leftVoiceCheck ="不合格";
-        public  string rightVoiceCheck = "不合格";
+        public string leftVoiceCheck = "不合格";
+        public string rightVoiceCheck = "不合格";
         private MediaPlayer mediaPlayer = new MediaPlayer();
+        private bool isplaying = false;
+
         public MusicCheck()
         {
             InitializeComponent();
@@ -30,23 +32,15 @@ namespace TestChildVR.usercontrol
 
         private void InitlizeMusic()
         {
-            if (_isfirstload)
-            {
-                mediaPlayer.Open(new Uri(AppDomain.CurrentDomain.BaseDirectory + "music/test.mp3", UriKind.Absolute));
-                mediaPlayer.MediaEnded += mediaPlayer_MediaEnded;
-                mediaPlayer.Play();
-                _isfirstload = false;
-            }
-            else
-            {
-                mediaPlayer.Play();
-            }
+            mediaPlayer.Open(new Uri(AppDomain.CurrentDomain.BaseDirectory + "music/test.mp3", UriKind.Absolute));
+            mediaPlayer.MediaEnded += mediaPlayer_MediaEnded;
+            _isfirstload = false;
         }
 
         void mediaPlayer_MediaEnded(object sender, EventArgs e)
         {
             //throw new NotImplementedException();
-            mediaPlayer.Position =TimeSpan.Zero;
+            mediaPlayer.Position = TimeSpan.Zero;
             mediaPlayer.Play();
         }
 
@@ -67,13 +61,10 @@ namespace TestChildVR.usercontrol
             {
                 mediaPlayer.Pause();
             }
-            // throw new NotImplementedException();
         }
 
         private void Leftvoice_OnIsCheckedChanged(object sender, EventArgs e)
         {
-          //  throw new NotImplementedException();
-            // Console.WriteLine(this.leftvoice.IsChecked.Value);
             if (this.leftvoice.IsChecked.Value)
             {
                 leftVoiceCheck = "合格";
@@ -82,7 +73,7 @@ namespace TestChildVR.usercontrol
 
         private void Rightvoice_OnIsCheckedChanged(object sender, EventArgs e)
         {
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
             if (this.rightvoice.IsChecked.Value)
             {
                 rightVoiceCheck = "合格";
@@ -91,23 +82,44 @@ namespace TestChildVR.usercontrol
 
         private void Done_OnClick(object sender, RoutedEventArgs e)
         {
-            //
-            this.Dispatcher.BeginInvoke(new Action(() =>
+            if (!isplaying)
             {
-                this.Visibility=Visibility.Hidden;
-            }));
+                isplaying = true;
+                mediaPlayer.Play();
+                this.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.leftvoice.Visibility = Visibility.Visible;
+                    this.rightvoice.Visibility = Visibility.Visible;
+                }));
+            }
+            else
+            {
+                mediaPlayer.Pause();
+                isplaying = false;
+            }
         }
 
         private void Left_button_OnClick(object sender, RoutedEventArgs e)
         {
-          //  throw new NotImplementedException();
             mediaPlayer.Balance = -1000;
         }
 
         private void Right_button_OnClick(object sender, RoutedEventArgs e)
         {
-           // throw new NotImplementedException();
             mediaPlayer.Balance = 1000;
+        }
+
+        public void clear()
+        {
+            leftVoiceCheck = "不合格";
+            rightVoiceCheck = "不合格";
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                this.leftvoice.Visibility = Visibility.Hidden;
+                this.rightvoice.Visibility = Visibility.Hidden;
+                this.leftvoice.IsChecked = false;
+                this.rightvoice.IsChecked = false;
+            }));
         }
     }
 }
