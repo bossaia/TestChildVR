@@ -24,6 +24,9 @@ namespace TestChildVR.usercontrol
         public string _passFlag ="不合格";
         public delegate void coinsInStatusChanged();
 
+        public bool notpass = false;
+
+
         public event coinsInStatusChanged statusChanged;
         public CoinsIn()
         {
@@ -37,6 +40,10 @@ namespace TestChildVR.usercontrol
         }
         void count_OnReturn()
         {
+            if (notpass)
+            {
+                return;
+            }
             mycoins++;
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -46,6 +53,7 @@ namespace TestChildVR.usercontrol
             {
                 this.Dispatcher.BeginInvoke(new Action(() =>
                 {
+                    this.result.Foreground=new SolidColorBrush(Colors.Green);
                     this.result.Content = "通过";
                 }));
                 _passFlag = "合格";
@@ -57,10 +65,24 @@ namespace TestChildVR.usercontrol
         {
             mycoins = 0;
             _passFlag = "不合格";
+            notpass = false;
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
                 this.result.Content = "";
                 this.Coins.Content = "0";
+                this.ButtonNotPass.IsEnabled = true;
+            }));
+        }
+        private void ButtonNotPass_OnClick(object sender, RoutedEventArgs e)
+        {
+            _passFlag = "不合格";
+            notpass = true;
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                this.result.Foreground=new SolidColorBrush(Colors.Red);
+                this.result.Content = "不通过";
+                this.ButtonNotPass.IsEnabled = false;
+                statusChanged();
             }));
         }
     }

@@ -5,6 +5,7 @@
         Title="映墨科技测试工具" 
         Background="Cornsilk"
         WindowStartupLocation="CenterScreen"
+        Icon="Test_Dummy_Tux_64px_1174627_easyicon.net.ico"
         Height="768" Width="1440">
     <Grid>
         <Grid x:Name="loginGrid" Visibility="Visible" >
@@ -28,15 +29,15 @@
                         <Label Content="密码："/>
                         <PasswordBox x:Name="password" ></PasswordBox>
                     </DockPanel>
-                    <Button Content="登入" x:Name="login" Width="100" Height="30" Margin="10" Click="Login_OnClick"></Button>
+                    <Button Content="登入" x:Name="login" Width="100" Height="50" FontSize="20" Margin="10" Click="Login_OnClick"></Button>
                 </StackPanel>
             </Grid>
         </Grid>
 
         <Grid x:Name="testGrid" Visibility="Hidden">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
             
             <Grid Row="0">
@@ -48,10 +49,13 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <Button Content="屏幕检测"  x:Name="StartCheck" Click="StartCheck_OnClick"></Button>
+                    <StackPanel>
+                        <Button Content="屏幕检测"  Height="300" FontSize="50" x:Name="StartCheck" Click="StartCheck_OnClick"></Button>
+                        <Button Content="不通过" Height="120" FontSize="50" x:Name="ColorNotAllow" Click="ColorNotAllow_OnClick"></Button>
+                    </StackPanel>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <usercontrol:MusicCheck Margin="10" x:Name="musicCheck"></usercontrol:MusicCheck>
+                    <usercontrol:MusicCheck Margin="10"  x:Name="musicCheck"></usercontrol:MusicCheck>
                 </Grid>
                 <Grid Grid.Column="2">
                     <usercontrol:CoinsIn Margin="10" x:Name="coinsCheck"></usercontrol:CoinsIn>
@@ -60,12 +64,15 @@
                     <usercontrol:LineTest Margin="10" x:Name="lineCheck"></usercontrol:LineTest>
                 </Grid>
                 <Grid Grid.Column="4">
-                    <Button Content="打印结果" FontSize="30" x:Name="printResult" Click="PrintResult_OnClick" Visibility="Hidden"></Button>
+                    <usercontrol:PushCard Margin="10" x:Name="pushcard"/>
                 </Grid>
             </Grid>
             <Grid Row="1">
-                <Grid>
+                <!--<Grid>
                     <RichTextBox x:Name="myRichTextBox" Background="Cornsilk"  FontSize="12"></RichTextBox>
+                </Grid>-->
+                <Grid>
+                    <Button Content="打印结果" FontSize="50" x:Name="printResult" Click="PrintResult_OnClick" Visibility="Hidden"></Button>
                 </Grid>
             </Grid>
         </Grid>

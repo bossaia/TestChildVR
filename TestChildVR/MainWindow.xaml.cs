@@ -48,6 +48,20 @@ namespace TestChildVR
                     this.printResult.Visibility = Visibility.Visible;
                 }));
             }
+            if (this.coinsCheck.notpass)
+            {
+                this.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.printResult.Visibility = Visibility.Visible;
+                })); 
+            }
+            if (this.lineCheck.notpass)
+            {
+                this.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    this.printResult.Visibility = Visibility.Visible;
+                })); 
+            }
         }
 
         void colorcheck_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -67,7 +81,6 @@ namespace TestChildVR
                     this.Visibility = Visibility.Visible;
                 }));
             }
-            
         }
 
         private void Login_OnClick(object sender, RoutedEventArgs e)
@@ -112,15 +125,15 @@ namespace TestChildVR
         public void Flushmsg(string msg)
         {
             
-            this.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                if (this.myRichTextBox.Document.Blocks.Count > 100)
-                {
-                    this.myRichTextBox.Document.Blocks.Clear();
-                }
-                this.myRichTextBox.AppendText(msg);
-                this.myRichTextBox.ScrollToEnd();
-            }));
+            //this.Dispatcher.BeginInvoke(new Action(() =>
+            //{
+            //    if (this.myRichTextBox.Document.Blocks.Count > 100)
+            //    {
+            //        this.myRichTextBox.Document.Blocks.Clear();
+            //    }
+            //    this.myRichTextBox.AppendText(msg);
+            //    this.myRichTextBox.ScrollToEnd();
+            //}));
         }
 
         private void StartCheck_OnClick(object sender, RoutedEventArgs e)
@@ -139,28 +152,28 @@ namespace TestChildVR
             pd.DefaultPageSettings.PaperSize = ps;
             pd.PrintPage += pd_PrintPage;
             pd.Print();
-
             this.coinsCheck.clear();
             this.lineCheck.clear();
             this.musicCheck.clear();
+            this.pushcard.Clear();
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
                 this.printResult.Visibility = Visibility.Hidden;
             }));
-
         }
         public StringBuilder GetPrintSW()
         {
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine("映墨科技");
             sb.AppendLine("操作者："+handlers);
-            sb.AppendLine("屏幕：合格");
+            sb.AppendLine("屏幕  :"+this.colorcheck.CheckResult);
             sb.AppendLine("左声道："+this.musicCheck.leftVoiceCheck);
             sb.AppendLine("右声道：" + this.musicCheck.rightVoiceCheck);
-            sb.AppendLine("投币：" + this.coinsCheck._passFlag);
-            sb.AppendLine("接线开关：" + this.lineCheck.result);
+            sb.AppendLine("投币  ：" + this.coinsCheck._passFlag);
+            sb.AppendLine("按键  ：" + this.lineCheck.result);
+            sb.AppendLine("吐卡   :"+this.pushcard.result);
             sb.AppendLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-
-            return sb;
+            return sb; 
         }
 
 
@@ -174,7 +187,7 @@ namespace TestChildVR
 
             draw.Pen pen = new draw.Pen(draw.Color.Black);           //线条颜色           
 
-            draw.Point po = new draw.Point(10, 10);
+            draw.Point po = new draw.Point(0, 0);
 
             try
             {
@@ -187,8 +200,18 @@ namespace TestChildVR
             {
 
                 MessageBox.Show(ex.ToString());
-
             }
+        }
+
+        private void ColorNotAllow_OnClick(object sender, RoutedEventArgs e)
+        {
+            //throw new NotImplementedException();
+            this.colorcheck.CheckResult = "不合格";
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                this.printResult.Visibility = Visibility.Visible;
+            }));
+            
         }
     }
 }

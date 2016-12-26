@@ -1,28 +1,27 @@
 ﻿<UserControl x:Class="TestChildVR.usercontrol.LineTest"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
         Background="Cornsilk"
         >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Label Content="接线测试" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+            <Label Content="按键测试" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
         </Grid>
         <Grid Grid.Row="1">
-            <Label Height="100" Width="100" FontSize="80" x:Name="lines" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="0"/>
+            <Label  Width="100" FontSize="80" x:Name="lines" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="0"/>
         </Grid>
-        <Grid Grid.Row="2">
-            <Label x:Name="lineResult" Height="30" Width="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+        <Grid Grid.Row="2" >
+            <Label x:Name="lineResult"  FontSize="30" Width="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
         </Grid>
-        <!--<Grid Grid.Row="2">
-            <DockPanel>
-                <Button Content="测试通过" Background="Cornsilk" x:Name="Pass" Width="150" Click="Pass_OnClick"/>
-                <Button Content="测试失败" Background="Cornsilk" x:Name="NotPass" Click="NotPass_OnClick" />
-            </DockPanel>
-        </Grid>-->
+        <Grid Grid.Row="3">
+            <Button  x:Name="ButtonNotPass" Content="不通过" FontSize="30" Click="ButtonNotPass_OnClick"></Button>
+        </Grid>
     </Grid>
 </UserControl>

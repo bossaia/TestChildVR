@@ -21,6 +21,7 @@ namespace TestChildVR.usercontrol
     {
         public int lineTest = 0;
         public string result = "不合格";
+        public bool notpass = false;
 
         public delegate void LineStatusChanged();
 
@@ -39,6 +40,10 @@ namespace TestChildVR.usercontrol
 
         void count_OnReturn()
         {
+            if (notpass)
+            {
+                return;
+            }
             lineTest++;
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -48,6 +53,7 @@ namespace TestChildVR.usercontrol
             {
                 this.Dispatcher.BeginInvoke(new Action(() =>
                 {
+                    this.lineResult.Foreground=new SolidColorBrush(Colors.Green);
                     this.lineResult.Content="通过";
                 }));
                 result = "合格";
@@ -59,10 +65,26 @@ namespace TestChildVR.usercontrol
         {
             lineTest = 0;
             result = "不合格";
+            notpass = false;
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
                 this.lineResult.Content = "";
                 this.lines.Content = "0";
+                this.ButtonNotPass.IsEnabled = true;
+            }));
+        }
+
+        private void ButtonNotPass_OnClick(object sender, RoutedEventArgs e)
+        {
+           // throw new NotImplementedException();
+            notpass = true;
+            result = "不合格";
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                this.lineResult.Content = "不通过";
+                this.lineResult.Foreground=new SolidColorBrush(Colors.Red);
+                this.ButtonNotPass.IsEnabled = false;
+                StatusChanged();
             }));
         }
     }

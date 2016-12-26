@@ -70,6 +70,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Test_Dummy_Tux_64px_1174627_easyicon.net.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MahApps.Metro, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -111,6 +114,9 @@
     <Compile Include="usercontrol\MusicCheck.xaml.cs">
       <DependentUpon>MusicCheck.xaml</DependentUpon>
     </Compile>
+    <Compile Include="usercontrol\PushCard.xaml.cs">
+      <DependentUpon>PushCard.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="usercontrol\MusicCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="usercontrol\PushCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="music\test.mp3" />
+    <Resource Include="Test_Dummy_Tux_64px_1174627_easyicon.net.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\getCoins\getCoins.csproj">

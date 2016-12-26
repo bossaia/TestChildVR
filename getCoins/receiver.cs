@@ -15,25 +15,22 @@ namespace getCoins
 
         private static Thread getValue;
 
-
-        [DllImport("HMDUSBManager.dll", EntryPoint = "InputPulse", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("HMDUSBManager.dll", EntryPoint = "HMDInputPulse", CallingConvention = CallingConvention.Cdecl)]
         extern static bool InputPulse(InputPulseHandler pCallbackFunc);//([MarshalAs(UnmanagedType.FunctionPtr)] InputPulseHandler pCallbackFunc);
         [DllImport("HMDUSBManager.dll", EntryPoint = "ReceiveMessage", CallingConvention = CallingConvention.Cdecl)]
         extern static bool ReceiveMessage(int Message);
-
-        [DllImport("HMDUSBManager.dll", EntryPoint = "TestLight", CallingConvention = CallingConvention.Cdecl)]
-        public extern static bool TestLight(int message);
-
+         
         private static void ReceiveInputPulseCallBack(int key, int money, int error)
         {
             bool returnMessage = ReceiveMessage(key);
             if (key == 0)
             {
-                count.issue();
+                //count.issue();
                 return;
             }
             if (count.oldCount != key)
             {
+                count.oldCount = key;
                 count.issue();
             }
         }
